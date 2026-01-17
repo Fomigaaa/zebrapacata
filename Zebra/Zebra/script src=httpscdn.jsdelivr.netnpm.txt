@@ -1,0 +1,126 @@
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>(function(){
+    // COLOCA AQUI OS TEUS CÓDIGOS DO EMAILJS
+    emailjs.init("AQUI_VAI_TUA_PUBLIC_KEY");   // ←←← Public Key
+})();
+
+const form = document.getElementById('contactForm');
+const status = document.getElementById('status');
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    status.textContent = '';
+    status.style.color = '#e74c3c';
+
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const topico = document.getElementById('topico').value.trim();
+    const mensagemRaw = document.getElementById('mensagem').value;
+    const mensagem = mensagemRaw.trim();
+    const letrasSemEspacos = mensagem.replace(/\s+/g, '').length;
+
+    // Validações
+    if (!nome || !email || !topico || !mensagem) {
+        status.textContent = "Preencha todos os campos.";
+        return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        status.textContent = "Email inválido.";
+        return;
+    }
+    if (letrasSemEspacos <= 10) {
+        status.textContent = "A mensagem deve ter mais de 10 letras (sem contar espaços).";
+        return;
+    }
+
+    // Desativa botão enquanto envia
+    const btn = document.getElementById('enviarBtn');
+    btn.disabled = true;
+    btn.textContent = "A ENVIAR...";
+
+    emailjs.send("AQUI_VAI_TEUS_SERVICE_ID", "AQUI_VAI_TEUS_TEMPLATE_ID", {
+        nome: nome,
+        email: email,
+        topico: topico,
+        mensagem: mensagem
+    })
+    .then(() => {
+        status.style.color = '#27ae60';
+        status.textContent = "Mensagem enviada com sucesso! Obrigado!";
+        form.reset();
+    })
+    .catch(() => {
+        status.textContent = "Erro ao enviar. Tente novamente ou envie diretamente para zebra@pacata.com";
+    })
+    .finally(() => {
+        btn.disabled = false;
+        btn.textContent = "ENVIAR MENSAGEM";
+    });
+});</script>
+
+
+
+
+const form = document.getElementById('contactForm');
+const erro = document.getElementById('erro');
+const enviarBtn = document.getElementById('enviarBtn');
+
+// Muda aqui o teu email real
+const EMAIL_DESTINO = "aei.coordenacao@gmail.com";   // ←←← COLOCA AQUI O TEU EMAIL
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    erro.style.display = 'none';
+    erro.textContent = '';
+
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const topico = document.getElementById('topico').value.trim();
+    const mensagemRaw = document.getElementById('mensagem').value;
+    const mensagem = mensagemRaw.trim();
+    const letrasSemEspacos = mensagem.replace(/\s+/g, '').length;
+
+    // Validações
+    if (!nome || !email || !topico || !mensagem) {
+        erro.textContent = "Por favor, preencha todos os campos.";
+        erro.style.display = 'block';
+        return;
+    }
+
+    // Email válido?
+    const emailValido = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+    if (!emailValido) {
+        erro.textContent = "Por favor, insira um email válido.";
+        erro.style.display = 'block';
+        return;
+    }
+
+    // Mensagem com mais de 10 letras (sem contar espaços)
+    if (letrasSemEspacos <= 10) {
+        erro.textContent = "A mensagem deve ter mais de 10 letras (sem contar espaços).";
+        erro.style.display = 'block';
+        return;
+    }
+
+    // Tudo OK → abre o cliente de email
+    const assunto = encodeURIComponent(`Nova mensagem de ${nome}: ${topico}`);
+    const corpo = encodeURIComponent(
+`Nome: ${nome}
+Email: ${email}
+Tópico: ${topico}
+
+Mensagem:
+${mensagem}
+
+---
+Enviado do site Zebra Pacata`
+    );
+
+    window.location.href = `mailto:${EMAIL_DESTINO}?subject=${assunto}&body=${corpo}`;
+
+    // Opcional: limpar formulário após envio
+    form.reset();
+    erro.style.display = 'block';
+    erro.style.color = '#27ae60';
+    erro.textContent = "A abrir o seu cliente de email...";
+});
