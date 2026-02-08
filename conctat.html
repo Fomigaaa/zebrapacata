@@ -3,8 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=divece-width, inicial-scale=1.0">
-    <title>Zebra Pacata</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zebra Pacata - Centro de Estudos, explicações e apoio escolar.">
+    <meta name="robots" content="index, follow">
+    <title>Zebra Pacata - Centro de Estudos</title>
     <link rel="icon" type="image/x-icon" href="imagens/logozebra.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -14,7 +16,7 @@
 <body>
     <nav class="navbar">
         <ul>
-            <li><a href="index.html">Início</a></li>
+            <li><a href="home.html">Início</a></li>
             <li><a href="mission.html">Nossa Missão</a></li>
             <li><a href="services.html">Serviços</a></li>
             <div class="logo">
@@ -55,48 +57,18 @@
 
                 <div class="contact-form">
                     <h3>ESCREVA-NOS</h3>
-                    <form id="contactForm" action="https://formspree.io/f/xreeebzb" method="POST"
-                        onsubmit="return validarEmail()">
-                        <input type="text" name="nome" placeholder="O seu nome" required>
-                        <input type="email" id="email" name="email" placeholder="O seu email" required>
-                        <input type="text" name="assunto" placeholder="Tópico" required>
-                        <textarea name="mensagem" placeholder="Mensagem" rows="5" required></textarea>
-                        <p id="erro" style="color:#e74c3c; margin-top:10px; font-size:0.95rem; display:none;"></p>
-                        <button type="submit">Enviar</button>
-                    </form>
+                    <form id="contactForm">
+                        <input type="text" id="nome" placeholder="Nome" required>
+                        <input type="email" id="email" placeholder="O Seu Email" required>
+                        <input type="text" id="topico" placeholder="Tópico" required>
+                        <textarea id="mensagem" placeholder="Escreva a sua mensagem" rows="5" required></textarea>
 
+                        <button type="submit" id="enviarBtn">ENVIAR MENSAGEM</button>
+                        <p id="erro" style="color:#e74c3c; margin-top:10px; font-size:0.95rem; display:none;"></p>
+                    </form>
                 </div>
             </div>
-            <script>
-                function validarEmail() {
-                    const email = document.getElementById("email").value.toLowerCase();
-                    const erro = document.getElementById("erroEmail");
-
-                    // domínios bloqueados
-                    const dominiosProibidos = [
-                        "gmail.com",
-                        "outlook.com",
-                        "hotmail.com",
-                        "yahoo.com"
-                    ];
-
-                    // verificar domínio
-                    const dominio = email.split("@")[1];
-
-                    if (!email.includes("@") || !dominio) {
-                        erro.textContent = "Email inválido.";
-                        return false;
-                    }
-
-                    if (dominiosProibidos.includes(dominio)) {
-                        erro.textContent = "Não são permitidos emails Gmail, Outlook, etc.";
-                        return false;
-                    }
-
-                    erro.textContent = "";
-                    return true;
-                }
-            </script>
+        </div>
     </section>
     <footer class="footer">
         <div class="footer-wave"></div>
@@ -116,10 +88,8 @@
 
             <!-- Redes sociais -->
             <div class="footer-social">
-                <a href="https://www.facebook.com/people/Centro-de-Apoio-Pedag%C3%B3gico-Zebra-Pacata/100094758005403/"
-                    aria-label="Facebook" ;><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/centropedagogicozebrapacata/" aria-label="Instagram"><i
-                        class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/people/Centro-de-Apoio-Pedag%C3%B3gico-Zebra-Pacata/100094758005403/" aria-label="Facebook";><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/centropedagogicozebrapacata/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
 
@@ -127,4 +97,5 @@
             <span class="material-icons">copyright</span>Direitos Reservados a Zebra Pacata LDA
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </body>

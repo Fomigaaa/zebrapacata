@@ -14,19 +14,68 @@
 </head>
 
 <body>
+
     <nav class="navbar">
         <ul>
-            <li><a href="home.html">Início</a></li>
+            <li><a class="active" href="home.html">Início</a></li>
             <li><a href="mission.html">Nossa Missão</a></li>
-            <li><a class="active" href="services.html">Serviços</a></li>
+            <li><a href="services.html">Serviços</a></li>
             <div class="logo">
-                <li><img src="imagens/logozebra.png" alt="Logotipo"></li>
+                <img src="imagens/logozebra.png" alt="Logo Zebra Pacata">
             </div>
             <li><a href="pictures.html">Galeria</a></li>
             <li><a href="recrute.html">Recrutamento</a></li>
             <li><a href="conctat.html">Contacto</a></li>
         </ul>
-    </nav> <!--navbar-->
+    </nav>
+
+    <section class="hero-slider">
+
+        <div class="slide active">
+            <img src="imagens/p1f1.jpg" alt="Slide 1">
+            <div class="hero-content">
+                <h1>COLABORAÇÃO QUE INSPIRA</h1>
+                <p>Desenvolvemos competências em equipa para um crescimento sólido.</p>
+                <a href="conctat.html" class="hero-btn">DESCUBRA-NOS!</a>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="imagens/p1f2.jpg" alt="Slide 2">
+            <div class="hero-content">
+                <h1>JUNTOS APRENDEMOS MELHOR</h1>
+                <p>A união faz a força no nosso percurso educativo.</p>
+                <a href="conctat.html" class="hero-btn">DESCUBRA MAIS!</a>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="imagens/p1f3.jpg" alt="Slide 3">
+            <div class="hero-content">
+                <h1>APRENDER SEM FRONTEIRAS</h1>
+                <p>Educação personalizada e acessível, onde quer que estejas.</p>
+                <a href="services.html" class="hero-btn">OS NOSSOS SERVIÇOS</a>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="imagens/p1f4.jpg" alt="Slide 4">
+            <div class="hero-content">
+                <h1>RUMO AO SUCESSO</h1>
+                <p>Preparação contínua para um futuro brilhante.</p>
+                <a href="conctat.html" class="hero-btn">FALE CONNOSCO!</a>
+            </div>
+        </div>
+
+        <div class="dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+    </section>
+    <script src="script.js"></script>
 
     <footer class="footer">
         <div class="footer-wave"></div>
@@ -57,6 +106,7 @@
             <span class="material-icons">copyright</span>Direitos Reservados a Zebra Pacata LDA
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </body>
 
 </html>
